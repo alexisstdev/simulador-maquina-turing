@@ -1,14 +1,25 @@
 import { Box, Button, Divider, Flex, FormLabel, Input, Text } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import { examples } from '../constants/examples';
+import TuringDiagram from './TuringDiagram';
 
-const machine = examples[2];
+const machine = examples[1];
+
+// Declaración de tipo para las transiciones
+interface Transition {
+  from: string;
+  to: string;
+  read: string;
+  write: string;
+  direction: string;
+}
 
 const Turing = () => {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [tape, setTape] = useState<string[]>([]);
   const [head, setHead] = useState(0);
+  const [executedTransitions, setExecutedTransitions] = useState<Transition[]>([]);
   const isRunning = useRef(false);
 
   useEffect(() => {
@@ -51,14 +62,30 @@ const Turing = () => {
       isRunning.current = false;
       setOutput(newTape.join(''));
     }
+
+    // Update executed transitions
+    setExecutedTransitions((prevTransitions: Transition[]) => [
+      ...prevTransitions,
+      {
+        from: transition.from.name,
+        to: transition.to.name,
+        read: transition.read,
+        write: transition.write,
+        direction: transition.direction,
+      },
+    ]);
   }
 
   return (
     <>
       <Text fontSize={'2xl'}>{machine.description}</Text>
 
+      <Divider my={4} />
+
+      <TuringDiagram transitions={executedTransitions} />
+
       <form>
-        <FormLabel mt={4}>Entrada</FormLabel>
+        <FormLabel>Entrada</FormLabel>
 
         <Input value={input} onChange={(e) => setInput(e.target.value)} />
 
