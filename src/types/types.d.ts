@@ -1,15 +1,22 @@
+interface State {
+  name: string;
+  id: number;
+}
+
 interface TuringMachine {
-  states: string[];
+  description: string;
+  states: State[];
   alphabet: string[];
   blank: string;
-  finalStates: string[];
+  finalState: State;
   transitions: Transition[];
-  initialState: string;
+  initialState: State;
 }
 
 interface Transition {
-  from: string;
-  to: string;
+  id: number;
+  from: State;
+  to: State;
   read: string;
   write: string;
   direction: string;
