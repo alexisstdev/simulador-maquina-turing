@@ -14,6 +14,15 @@ import TuringDiagram from './TuringDiagram';
 
 const machine = examples[1];
 
+// Declaración de tipo para las transiciones
+interface Transition {
+  from: string;
+  to: string;
+  read: string;
+  write: string;
+  direction: string;
+}
+
 const Turing = () => {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
@@ -82,8 +91,10 @@ const Turing = () => {
 
       <Divider my={4} />
 
+      <TuringDiagram transitions={executedTransitions} />
+
       <form>
-        <FormLabel mt={4}>Entrada</FormLabel>
+        <FormLabel>Entrada</FormLabel>
 
         <Input value={input} onChange={(e) => setInput(e.target.value)} />
 
