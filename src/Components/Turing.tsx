@@ -1,13 +1,4 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  FormLabel,
-  Heading,
-  Input,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Button, Divider, Flex, FormLabel, Input, Text } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import { examples } from '../constants/examples';
 
