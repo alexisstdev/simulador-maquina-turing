@@ -11,7 +11,7 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import { examples } from '../constants/examples';
 
-const machine = examples[1];
+const machine = examples[2];
 
 const Turing = () => {
   const [input, setInput] = useState('');
@@ -66,10 +66,8 @@ const Turing = () => {
     <>
       <Text fontSize={'2xl'}>{machine.description}</Text>
 
-      <Divider my={4} />
-
       <form>
-        <FormLabel>Entrada</FormLabel>
+        <FormLabel mt={4}>Entrada</FormLabel>
 
         <Input value={input} onChange={(e) => setInput(e.target.value)} />
 
