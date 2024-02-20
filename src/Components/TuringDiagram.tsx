@@ -1,10 +1,10 @@
+import { Box, ButtonGroup, Center, IconButton } from '@chakra-ui/react';
 import { useEffect, useRef } from 'react';
+import { FiRepeat, FiZoomIn, FiZoomOut } from 'react-icons/fi';
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import Viz from 'viz.js';
 import { Module, render } from 'viz.js/full.render.js';
 import { Transition } from '../types/types';
-import { Box, Button, ButtonGroup, Center, IconButton } from '@chakra-ui/react';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
-import { FiZoomOut, FiZoomIn, FiRepeat } from 'react-icons/fi';
 
 interface Props {
   transitions: Transition[];
@@ -40,7 +40,6 @@ const TuringDiagram = ({ transitions }: Props) => {
         console.error('Error rendering graph:', error);
       });
   }, [transitions]);
-
   return (
     <Box
       flex={0.5}

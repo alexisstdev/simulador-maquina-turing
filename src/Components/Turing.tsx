@@ -70,6 +70,9 @@ const Turing = () => {
     ]);
   }
 
+  console.log(output);
+  console.log(executedTransitions);
+
   return (
     <>
       <Flex gap={8}>
