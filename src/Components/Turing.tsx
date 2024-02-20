@@ -5,7 +5,7 @@ import { Transition } from '../types/types';
 import TuringDiagram from './TuringDiagram';
 import Form from './Form';
 
-const machine = examples[0];
+const machine = examples[1];
 
 const Turing = () => {
   const [input, setInput] = useState('');

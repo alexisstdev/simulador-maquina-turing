@@ -49,12 +49,13 @@ const TuringDiagram = ({ transitions }: Props) => {
       borderColor='gray.200'
       borderRadius='md'
       overflow={'hidden'}
+      maxH={'100%'}
     >
       <TransformWrapper limitToBounds={false}>
         {({ zoomIn, zoomOut, resetTransform }) => (
           <>
             <TransformComponent>
-              <Box ref={graphRef} w='100vw' cursor={'grab'} />
+              <Box ref={graphRef} w='100vw' />
             </TransformComponent>
             <Center position='absolute' w='100%' bottom='0'>
               <ButtonGroup my={2} alignItems={'center'}>
