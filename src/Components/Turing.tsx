@@ -1,18 +1,11 @@
 import { Box, Button, Divider, Flex, FormLabel, Input, Text } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import { examples } from '../constants/examples';
+import { Transition } from '../types/types';
 import TuringDiagram from './TuringDiagram';
+import Form from './Form';
 
-const machine = examples[1];
-
-// Declaración de tipo para las transiciones
-interface Transition {
-  from: string;
-  to: string;
-  read: string;
-  write: string;
-  direction: string;
-}
+const machine = examples[0];
 
 const Turing = () => {
   const [input, setInput] = useState('');
@@ -67,8 +60,9 @@ const Turing = () => {
     setExecutedTransitions((prevTransitions: Transition[]) => [
       ...prevTransitions,
       {
-        from: transition.from.name,
-        to: transition.to.name,
+        id: transition.id,
+        from: transition.from,
+        to: transition.to,
         read: transition.read,
         write: transition.write,
         direction: transition.direction,
@@ -78,11 +72,14 @@ const Turing = () => {
 
   return (
     <>
+      <Flex gap={4}>
+        <Form />
+        <TuringDiagram transitions={machine.transitions} />
+      </Flex>
+
+      <Divider my={16} />
+
       <Text fontSize={'2xl'}>{machine.description}</Text>
-
-      <Divider my={4} />
-
-      <TuringDiagram transitions={executedTransitions} />
 
       <form>
         <FormLabel>Entrada</FormLabel>

@@ -1,9 +1,9 @@
-interface State {
+export interface State {
   name: string;
   id: number;
 }
 
-interface TuringMachine {
+export interface TuringMachine {
   description: string;
   states: State[];
   alphabet: string[];
@@ -13,7 +13,7 @@ interface TuringMachine {
   initialState: State;
 }
 
-interface Transition {
+export interface Transition {
   id: number;
   from: State;
   to: State;

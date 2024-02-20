@@ -1,3 +1,5 @@
+import { TuringMachine } from '../types/types';
+
 const blank = '△';
 
 export const examples: TuringMachine[] = [
