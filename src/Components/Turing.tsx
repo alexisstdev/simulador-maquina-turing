@@ -75,7 +75,12 @@ const Turing = () => {
 
   return (
     <>
-      <Flex gap={8}>
+      <Flex
+        gap={8}
+        direction={{ base: 'column', md: 'row' }}
+        justifyContent={'space-between'}
+        alignItems={'flex-start'}
+      >
         <Form />
         <TuringDiagram transitions={machine.transitions} />
       </Flex>
