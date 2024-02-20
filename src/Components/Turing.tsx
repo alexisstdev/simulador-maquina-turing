@@ -72,7 +72,7 @@ const Turing = () => {
 
   return (
     <>
-      <Flex gap={4}>
+      <Flex gap={8}>
         <Form />
         <TuringDiagram transitions={machine.transitions} />
       </Flex>
