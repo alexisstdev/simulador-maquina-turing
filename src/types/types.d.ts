@@ -1,23 +1,23 @@
-export interface State {
-  name: string;
+export interface Estado {
+  nombre: string;
   id: number;
 }
 
-export interface TuringMachine {
-  description: string;
-  states: State[];
-  alphabet: string[];
-  blank: string;
-  finalState: State;
-  transitions: Transition[];
-  initialState: State;
+export interface MaquinaTuring {
+  descripcion: string;
+  estados: Estado[];
+  alfabeto: string[];
+  blanco: string;
+  estadoFinal: Estado;
+  transiciones: Transicion[];
+  estadoInicial: Estado;
 }
 
-export interface Transition {
+export interface Transicion {
   id: number;
-  from: State;
-  to: State;
-  read: string;
-  write: string;
-  direction: string;
+  desde: Estado;
+  hacia: Estado;
+  leer: string;
+  escribir: string;
+  direccion: string;
 }
