@@ -5,7 +5,7 @@ import { Transition } from '../types/types';
 import TuringDiagram from './TuringDiagram';
 import Form from './Form';
 
-const machine = examples[1];
+const machine = examples[3];
 
 const Turing = () => {
   const [input, setInput] = useState('');
@@ -75,23 +75,10 @@ const Turing = () => {
 
   return (
     <>
-      <Flex
-        gap={8}
-        direction={{ base: 'column', md: 'row' }}
-        justifyContent={'space-between'}
-        alignItems={'flex-start'}
-      >
-        <Form />
-        <TuringDiagram transitions={machine.transitions} />
-      </Flex>
-
-      <Divider my={16} />
-
-      <Text fontSize={'2xl'}>{machine.description}</Text>
-
       <form>
-        <FormLabel>Entrada</FormLabel>
+        <Text fontSize={'2xl'}>{machine.description}</Text>
 
+        <FormLabel mt={4}>Entrada</FormLabel>
         <Input value={input} onChange={(e) => setInput(e.target.value)} />
 
         <Button
@@ -107,7 +94,7 @@ const Turing = () => {
         <Divider my={4} />
 
         <Text mt={1} fontSize={'xl'}>
-          <Flex gap={3}>
+          <Flex gap={3} overflow={'auto'}>
             {tape.map((symbol, index) => (
               <Flex key={index} direction={'column'} alignItems={'center'} gap={1}>
                 <Box
@@ -125,6 +112,16 @@ const Turing = () => {
           </Flex>
         </Text>
       </form>
+      <Divider my={8} />
+      <Flex
+        gap={8}
+        direction={{ base: 'column', md: 'row' }}
+        justifyContent={'space-between'}
+        alignItems={'flex-start'}
+      >
+        <Form />
+        <TuringDiagram transitions={machine.transitions} />
+      </Flex>
     </>
   );
 };
