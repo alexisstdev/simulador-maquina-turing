@@ -8,7 +8,7 @@ const Turing = () => {
       <Form />
 
       <Divider my={8} />
-      <Diagrama />
+      <Diagrama isCreando={true} />
 
       <Divider />
     </>

@@ -42,9 +42,15 @@ export default function useTuring() {
 
     // Si no encuentra la transición, lanza un error
     if (!transicion) {
-      throw new Error(
-        `No se encontró una transición para el estado ${estado.current.nombre} y el símbolo ${simbolo}`
-      );
+      alert('Terminación anormal: no se encontró transición válida');
+      enEjecucion.current = false;
+      return;
+    }
+
+    if (cabeza >= cinta.length && estado.current.id !== maquina.estadoFinal.id) {
+      alert('Problema de parada');
+      enEjecucion.current = false;
+      return;
     }
 
     // Actualiza la cinta con el nuevo símbolo
@@ -64,6 +70,8 @@ export default function useTuring() {
     if (estado.current.id === maquina.estadoFinal.id) {
       enEjecucion.current = false;
       setSalida(nuevaCinta.join(''));
+
+      alert('Cadena aceptada, la máquina ha terminado de ejecutarse.');
     }
   }
 

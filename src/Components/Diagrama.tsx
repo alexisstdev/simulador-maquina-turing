@@ -3,7 +3,7 @@ import { FiRefreshCcw, FiZoomIn, FiZoomOut } from 'react-icons/fi';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import useDiagrama from '../hooks/useDiagrama';
 
-const Diagrama = () => {
+const Diagrama = ({ isCreando = false }) => {
   const { graphRef } = useDiagrama();
 
   return (
@@ -21,7 +21,11 @@ const Diagrama = () => {
         {({ zoomIn, zoomOut, resetTransform }) => (
           <>
             <TransformComponent>
-              <Box ref={graphRef} w='100%' />
+              <Box
+                ref={graphRef}
+                w={isCreando ? '100vw' : '450px'}
+                minH={isCreando ? '365px' : '300px'}
+              />
             </TransformComponent>
             <Center position='absolute' w='100%' bottom='0'>
               <ButtonGroup my={2} alignItems={'center'}>
