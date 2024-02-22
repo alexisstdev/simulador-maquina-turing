@@ -12,7 +12,8 @@ export interface MaquinaTuring {
   transiciones: Transicion[];
   estadoInicial: Estado;
   simbolos?: string[];
-  cintaAlmacenada?: string;
+  cintaAlmacenada: string;
+  simboloAlmacenamiento: string;
 }
 
 export interface Transicion {

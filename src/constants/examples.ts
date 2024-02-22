@@ -1,5 +1,8 @@
-export const examples = [
+import { MaquinaTuring } from '../types/types';
+
+export const examples: MaquinaTuring[] = [
   {
+    simboloAlmacenamiento: 'σ',
     descripcion: 'Invierte los bits de un número binario',
     estados: [
       { nombre: 'q0', id: 0 },
@@ -37,6 +40,7 @@ export const examples = [
     estadoInicial: { nombre: 'q0', id: 0 },
   },
   {
+    simboloAlmacenamiento: 'σ',
     descripcion: "Complementa una cadena de 0's y 1's, y regresa a la posición inicial",
     estados: [
       { nombre: 'q0', id: 0 },
@@ -116,6 +120,7 @@ export const examples = [
     ],
   },
   {
+    simboloAlmacenamiento: 'σ',
     descripcion: 'Suma 1 a un número binario',
     estados: [
       { nombre: 'q0', id: 0 },
@@ -174,6 +179,38 @@ export const examples = [
         leer: '△',
         escribir: '1',
         direccion: 'L',
+      },
+    ],
+  },
+  {
+    simboloAlmacenamiento: 'σ',
+    descripcion: 'Maquina que usa almacenamiento',
+    estados: [
+      { nombre: 'q0', id: 0 },
+      { nombre: 'qf', id: 1 },
+    ],
+    alfabeto: ['0', '1'],
+    blanco: '△',
+    estadoFinal: { nombre: 'qf', id: 1 },
+    estadoInicial: { nombre: 'q0', id: 0 },
+    transiciones: [
+      {
+        id: 0,
+        desde: { nombre: 'q0', id: 0 },
+        hacia: { nombre: 'q0', id: 0 },
+        leer: '0',
+        escribir: '0',
+        almacenar: '0',
+        direccion: 'R',
+      },
+      {
+        id: 1,
+        desde: { nombre: 'q0', id: 0 },
+        hacia: { nombre: 'qf', id: 1 },
+        leer: '1',
+        escribir: '1',
+        almacenar: '1',
+        direccion: 'R',
       },
     ],
   },

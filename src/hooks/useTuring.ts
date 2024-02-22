@@ -4,6 +4,30 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Context } from '../Components/MaquinaProvider';
 
+/* 
+export interface MaquinaTuring {
+  descripcion: string;
+  estados: Estado[];
+  alfabeto: string[];
+  blanco: string;
+  estadoFinal: Estado;
+  transiciones: Transicion[];
+  estadoInicial: Estado;
+  simbolos?: string[];
+  cintaAlmacenada?: string;
+}
+
+export interface Transicion {
+  id: number;
+  desde: Estado;
+  hacia: Estado;
+  leer: string;
+  escribir: string;
+  almacenar?: string;
+  direccion: string;
+}
+*/
+
 export default function useTuring() {
   // Define el estado inicial y los setters para entrada, salida, cinta y cabeza
   const [entrada, setEntrada] = useState('');
@@ -55,7 +79,17 @@ export default function useTuring() {
 
     // Actualiza la cinta con el nuevo símbolo
     const nuevaCinta = [...cinta];
-    nuevaCinta[cabeza] = transicion.escribir;
+
+    if (transicion.almacenar && transicion.almacenar?.length > 0) {
+      maquina.cintaAlmacenada = transicion.almacenar;
+    }
+
+    if (transicion.escribir === 'σ') {
+      nuevaCinta[cabeza] = maquina.cintaAlmacenada;
+    } else {
+      nuevaCinta[cabeza] = transicion.escribir;
+    }
+
     setCinta(nuevaCinta);
 
     // Actualiza la posición de la cabeza

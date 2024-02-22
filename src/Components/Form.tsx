@@ -120,15 +120,6 @@ export default function Form() {
               }}
             />
           </FormControl>
-          <FormControl id='extras'>
-            <FormLabel>Simbolo de almacenamiento</FormLabel>
-            <Input
-              placeholder='Simbolo de almacenamiento, (solo un símbolo) ej: σ'
-              onChange={(e) => {
-                setMaquina({ ...maquina, cintaAlmacenada: e.target.value });
-              }}
-            />
-          </FormControl>
           <FormControl id='initialState'>
             <FormLabel>Estado Inicial</FormLabel>
             <Select
