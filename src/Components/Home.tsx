@@ -37,7 +37,8 @@ export default function Home() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    return ejecutarMaquina();
+
+    ejecutarMaquina();
   }
 
   useEffect(() => {
@@ -72,13 +73,15 @@ export default function Home() {
             placeholder='Seleccionar máquina'
             mt={4}
             value={selectedMaquina.descripcion}
-            onChange={(e) =>
-              setMaquina(
-                machines.find(
-                  (machine) => machine.descripcion === e.target.value
-                ) as MaquinaTuring
-              )
-            }
+            onChange={(e) => {
+              const maquinaSeleccionada = machines.find(
+                (machine) => machine.descripcion === e.target.value
+              ) as MaquinaTuring;
+
+              if (!maquinaSeleccionada) return;
+
+              return setMaquina(maquinaSeleccionada);
+            }}
           >
             {machines.map((machine, index) => (
               <option key={index} value={machine.descripcion} style={{ color: 'black' }}>
@@ -93,11 +96,11 @@ export default function Home() {
               value={entrada}
               onChange={(e) => {
                 setEntrada(e.target.value);
+
                 setCinta([...e.target.value].concat(selectedMaquina.blanco));
               }}
             />
-
-            <Button type='submit' mt={8} colorScheme='blue' size={'lg'} width={'100%'}>
+            <Button type='submit' mt={4} colorScheme='blue' size={'lg'} width={'100%'}>
               Ejecutar
             </Button>
           </form>
@@ -114,6 +117,9 @@ export default function Home() {
         setCabeza={setCabeza}
         isEjecutando={isEjecutando}
       />
+      <Text opacity={0.7} textAlign='center'>
+        Seleccione una celda de la cinta para posicionar el cabezal.
+      </Text>
     </>
   );
 }

@@ -10,7 +10,9 @@ const defaultMaquina = {
   estadoFinal: { nombre: '', id: 0 },
   estadoInicial: { nombre: '', id: 0 },
   transiciones: [] as Transicion[],
-};
+  cintaAlmacenada: '',
+  simbolos: [] as string[],
+} as MaquinaTuring;
 
 interface ContextType {
   maquina: MaquinaTuring;

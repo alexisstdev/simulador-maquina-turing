@@ -72,6 +72,13 @@ export default function useTuring() {
       setSalida(nuevaCinta.join(''));
 
       alert('Cadena aceptada, la máquina ha terminado de ejecutarse.');
+
+      setEntrada('');
+      setSalida('');
+      setCabeza(0);
+      estado.current = maquina.estadoInicial;
+
+      return;
     }
   }
 

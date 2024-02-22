@@ -27,13 +27,16 @@ export default function Form() {
       leer: '',
       escribir: '',
       direccion: '',
+      almacenar: '',
     },
   ]);
 
   const { addMachine } = useMaquinas();
 
-  const isValidSymbol = (symbol, alphabet) => {
-    return alphabet.includes(symbol);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const isValidSymbol = (symbol, alphabet, extras) => {
+    return alphabet.includes(symbol) || (extras && extras.includes(symbol));
   };
 
   const { maquina, setMaquina } = useContext(Context);
@@ -99,10 +102,30 @@ export default function Form() {
           <FormControl id='blank'>
             <FormLabel>Blanco</FormLabel>
             <Input
-              placeholder='Blanco de la cinta, (sólo un símbolo) ej: △'
+              placeholder='Blanco de la cinta, (solo un símbolo) ej: △'
               required
               onChange={(e) => {
                 setMaquina({ ...maquina, blanco: e.target.value });
+              }}
+            />
+          </FormControl>
+          <FormControl id='extras'>
+            <FormLabel>Simbolos extras como marcas (opcional)</FormLabel>
+            <Input
+              placeholder='Simbolos extras separados por comas, ej: #,&,!'
+              onChange={(e) => {
+                const extras = e.target.value.split(',');
+
+                setMaquina({ ...maquina, simbolos: extras });
+              }}
+            />
+          </FormControl>
+          <FormControl id='extras'>
+            <FormLabel>Simbolo de almacenamiento</FormLabel>
+            <Input
+              placeholder='Simbolo de almacenamiento, (solo un símbolo) ej: σ'
+              onChange={(e) => {
+                setMaquina({ ...maquina, cintaAlmacenada: e.target.value });
               }}
             />
           </FormControl>
@@ -230,7 +253,10 @@ export default function Form() {
                     value={transiciones[index].leer}
                     onChange={(e) => {
                       const symbol = e.target.value;
-                      if (symbol === '' || isValidSymbol(symbol, maquina.alfabeto)) {
+                      if (
+                        symbol === '' ||
+                        isValidSymbol(symbol, maquina.alfabeto, maquina?.simbolos)
+                      ) {
                         const nuevasTransiciones = [...transiciones];
                         nuevasTransiciones[index].leer = symbol;
                         setTransiciones(nuevasTransiciones);
@@ -253,7 +279,10 @@ export default function Form() {
                     value={transiciones[index].escribir}
                     onChange={(e) => {
                       const symbol = e.target.value;
-                      if (symbol === '' || isValidSymbol(symbol, maquina.alfabeto)) {
+                      if (
+                        symbol === '' ||
+                        isValidSymbol(symbol, maquina.alfabeto, maquina?.simbolos)
+                      ) {
                         const nuevasTransiciones = [...transiciones];
                         nuevasTransiciones[index].escribir = symbol;
                         setTransiciones(nuevasTransiciones);
@@ -262,6 +291,31 @@ export default function Form() {
                         // Elimina el valor si no es válido
                         const nuevasTransiciones = [...transiciones];
                         nuevasTransiciones[index].escribir = '';
+                        setTransiciones(nuevasTransiciones);
+                      }
+                    }}
+                  />
+                </FormControl>
+
+                <FormControl id='store'>
+                  <FormLabel>Almacenar (opcional)</FormLabel>
+                  <Input
+                    placeholder='Símbolo a almacenar'
+                    value={transiciones[index].almacenar}
+                    onChange={(e) => {
+                      const symbol = e.target.value;
+                      if (
+                        symbol === '' ||
+                        isValidSymbol(symbol, maquina.alfabeto, maquina?.simbolos)
+                      ) {
+                        const nuevasTransiciones = [...transiciones];
+                        nuevasTransiciones[index].almacenar = symbol;
+                        setTransiciones(nuevasTransiciones);
+                      } else {
+                        alert('Ingresa un símbolo válido del alfabeto.');
+                        // Elimina el valor si no es válido
+                        const nuevasTransiciones = [...transiciones];
+                        nuevasTransiciones[index].almacenar = '';
                         setTransiciones(nuevasTransiciones);
                       }
                     }}

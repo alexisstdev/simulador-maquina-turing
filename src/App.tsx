@@ -13,7 +13,7 @@ function App() {
   return (
     <AnimatePresence mode='wait'>
       <MaquinaProvider>
-        <Container maxW={'4xl'} py={8}>
+        <Container maxW={'7xl'} py={8}>
           <Heading as={'h1'} size={'xl'} textAlign={'center'} fontFamily={'monospace'}>
             <Link to={'/'}>Simulador Máquina de Turing</Link>
           </Heading>

@@ -17,7 +17,7 @@ const Diagrama = ({ isCreando = false }) => {
       maxH={'100%'}
       cursor={'grab'}
     >
-      <TransformWrapper limitToBounds={false}>
+      <TransformWrapper limitToBounds={false} minScale={0.5}>
         {({ zoomIn, zoomOut, resetTransform }) => (
           <>
             <TransformComponent>
@@ -25,6 +25,7 @@ const Diagrama = ({ isCreando = false }) => {
                 ref={graphRef}
                 w={isCreando ? '100vw' : '450px'}
                 minH={isCreando ? '365px' : '300px'}
+                maxH={isCreando ? '100%' : '400px'}
               />
             </TransformComponent>
             <Center position='absolute' w='100%' bottom='0'>

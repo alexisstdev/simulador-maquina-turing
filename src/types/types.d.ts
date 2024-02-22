@@ -11,6 +11,8 @@ export interface MaquinaTuring {
   estadoFinal: Estado;
   transiciones: Transicion[];
   estadoInicial: Estado;
+  simbolos?: string[];
+  cintaAlmacenada?: string;
 }
 
 export interface Transicion {
@@ -19,5 +21,6 @@ export interface Transicion {
   hacia: Estado;
   leer: string;
   escribir: string;
+  almacenar?: string;
   direccion: string;
 }
