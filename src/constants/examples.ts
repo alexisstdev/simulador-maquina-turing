@@ -182,36 +182,4 @@ export const examples: MaquinaTuring[] = [
       },
     ],
   },
-  {
-    simboloAlmacenamiento: 'σ',
-    descripcion: 'Maquina que usa almacenamiento',
-    estados: [
-      { nombre: 'q0', id: 0 },
-      { nombre: 'qf', id: 1 },
-    ],
-    alfabeto: ['0', '1'],
-    blanco: '△',
-    estadoFinal: { nombre: 'qf', id: 1 },
-    estadoInicial: { nombre: 'q0', id: 0 },
-    transiciones: [
-      {
-        id: 0,
-        desde: { nombre: 'q0', id: 0 },
-        hacia: { nombre: 'q0', id: 0 },
-        leer: '0',
-        escribir: '0',
-        almacenar: '0',
-        direccion: 'R',
-      },
-      {
-        id: 1,
-        desde: { nombre: 'q0', id: 0 },
-        hacia: { nombre: 'qf', id: 1 },
-        leer: '1',
-        escribir: '1',
-        almacenar: '1',
-        direccion: 'R',
-      },
-    ],
-  },
 ];
