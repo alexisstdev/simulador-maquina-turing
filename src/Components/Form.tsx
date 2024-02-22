@@ -32,6 +32,10 @@ export default function Form() {
 
   const { addMachine } = useMaquinas();
 
+  const isValidSymbol = (symbol, alphabet) => {
+    return alphabet.includes(symbol);
+  };
+
   const { maquina, setMaquina } = useContext(Context);
 
   useEffect(() => {
@@ -223,10 +227,20 @@ export default function Form() {
                   <Input
                     placeholder='Símbolo a leer'
                     required
+                    value={transiciones[index].leer}
                     onChange={(e) => {
-                      const nuevasTransiciones = [...transiciones];
-                      nuevasTransiciones[index].leer = e.target.value;
-                      setTransiciones(nuevasTransiciones);
+                      const symbol = e.target.value;
+                      if (symbol === '' || isValidSymbol(symbol, maquina.alfabeto)) {
+                        const nuevasTransiciones = [...transiciones];
+                        nuevasTransiciones[index].leer = symbol;
+                        setTransiciones(nuevasTransiciones);
+                      } else {
+                        alert('Ingresa un símbolo válido del alfabeto.');
+                        // Elimina el valor si no es válido
+                        const nuevasTransiciones = [...transiciones];
+                        nuevasTransiciones[index].leer = '';
+                        setTransiciones(nuevasTransiciones);
+                      }
                     }}
                   />
                 </FormControl>
@@ -236,10 +250,20 @@ export default function Form() {
                   <Input
                     placeholder='Símbolo a escribir'
                     required
+                    value={transiciones[index].escribir}
                     onChange={(e) => {
-                      const nuevasTransiciones = [...transiciones];
-                      nuevasTransiciones[index].escribir = e.target.value;
-                      setTransiciones(nuevasTransiciones);
+                      const symbol = e.target.value;
+                      if (symbol === '' || isValidSymbol(symbol, maquina.alfabeto)) {
+                        const nuevasTransiciones = [...transiciones];
+                        nuevasTransiciones[index].escribir = symbol;
+                        setTransiciones(nuevasTransiciones);
+                      } else {
+                        alert('Ingresa un símbolo válido del alfabeto.');
+                        // Elimina el valor si no es válido
+                        const nuevasTransiciones = [...transiciones];
+                        nuevasTransiciones[index].escribir = '';
+                        setTransiciones(nuevasTransiciones);
+                      }
                     }}
                   />
                 </FormControl>
