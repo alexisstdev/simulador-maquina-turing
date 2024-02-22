@@ -11,17 +11,23 @@ export default function useDiagrama() {
   useEffect(() => {
     const viz = new Viz({ Module, render });
 
-    const graph = `digraph G {
-      graph [bgcolor=transparent, fontname=Arial, fontsize=14];
-      node [shape=circle, style=filled, fillcolor=white, fontname=Arial, width=.8, height=.8, fontsize=16, color=white
-      ];
-      edge [color=white, arrowhead=vee, arrowsize=0.7, fontname=Arial, fontsize=14, fontcolor=white];
-      ${transitions
-        .map(({ desde, hacia, leer, escribir, direccion }) => {
-          return `"${desde.nombre}" -> "${hacia.nombre}" [label="  ${leer} / ${escribir}, ${direccion}      "];`;
-        })
-        .join('\n')}
-      }`;
+    let graph = '';
+    try {
+      graph = `digraph G {
+        graph [bgcolor=transparent, fontname=Arial, fontsize=14];
+        node [shape=circle, style=filled, fillcolor=white, fontname=Arial, width=.8, height=.8, fontsize=16, color=white
+        ];
+        edge [color=white, arrowhead=vee, arrowsize=0.7, fontname=Arial, fontsize=14, fontcolor=white];
+        ${transitions
+          .map(({ desde, hacia, leer, escribir, direccion }) => {
+            return `"${desde.nombre}" -> "${hacia.nombre}" [label="  ${leer} / ${escribir}, ${direccion}      "];`;
+          })
+          .join('\n')}
+        }`;
+    } catch (error) {
+      console.log(error);
+      return;
+    }
 
     viz
       .renderSVGElement(graph)

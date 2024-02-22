@@ -1,4 +1,4 @@
-import { Container, Divider, Heading } from '@chakra-ui/react';
+import { Container, Divider, Heading, Text } from '@chakra-ui/react';
 import { AnimatePresence } from 'framer-motion';
 import Turing from './Components/Turing';
 import useMaquinas from './hooks/useMachines';
@@ -17,6 +17,10 @@ function App() {
           <Heading as={'h1'} size={'xl'} textAlign={'center'} fontFamily={'monospace'}>
             <Link to={'/'}>Simulador Máquina de Turing</Link>
           </Heading>
+          <Text>Creado por:</Text>
+          <Text>David Perez Compean - 21100266</Text>
+          <Text>Esdras Daniel Amaya Vela - 21100155</Text>
+          <Text>Alexis Sanmiguiel Torres - 21100288</Text>
           <Divider mt={4} mb={10} />
 
           <Routes>

@@ -91,6 +91,8 @@ export default function Form() {
               placeholder='Estados separados por comas, ej: q0,q1,q2,q3'
               required
               onChange={(e) => {
+                /* regex for validate the format  */
+
                 const estados = e.target.value.split(',').map((estado, index) => {
                   return { nombre: estado, id: index };
                 });
@@ -105,6 +107,12 @@ export default function Form() {
               placeholder='Blanco de la cinta, (solo un símbolo) ej: △'
               required
               onChange={(e) => {
+                if (maquina.alfabeto.includes(e.target.value)) {
+                  alert('El blanco no puede ser un símbolo del alfabeto');
+                  setMaquina({ ...maquina, blanco: '' });
+                  return;
+                }
+
                 setMaquina({ ...maquina, blanco: e.target.value });
               }}
             />
