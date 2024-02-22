@@ -17,7 +17,9 @@ function App() {
           <Heading as={'h1'} size={'xl'} textAlign={'center'} fontFamily={'monospace'}>
             <Link to={'/'}>Simulador Máquina de Turing</Link>
           </Heading>
-          <Text>Creado por:</Text>
+          <Text mt={4} fontWeight={'bold'} fontSize={'lg'}>
+            Creado por:
+          </Text>
           <Text>David Perez Compean - 21100266</Text>
           <Text>Esdras Daniel Amaya Vela - 21100155</Text>
           <Text>Alexis Sanmiguiel Torres - 21100288</Text>
