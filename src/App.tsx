@@ -18,7 +18,7 @@ function App() {
             <Link to={'/'}>Simulador Máquina de Turing</Link>
           </Heading>
           <Text mt={4} fontWeight={'bold'} fontSize={'lg'}>
-            Creado por:
+            Creado por: {'  '}
           </Text>
           <Text>David Perez Compean - 21100266</Text>
           <Text>Esdras Daniel Amaya Vela - 21100155</Text>
