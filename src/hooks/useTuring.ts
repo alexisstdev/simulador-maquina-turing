@@ -51,8 +51,8 @@ export default function useTuring() {
   }, [cinta, cabeza]);
 
   function ejecutarMaquina() {
-    // Si la máquina no está en ejecución, la inicia
     if (!enEjecucion.current) {
+      // Si la máquina no está en ejecución, la inicia
       enEjecucion.current = true;
       setCinta([...entrada].concat(maquina.blanco));
       return;
@@ -85,7 +85,7 @@ export default function useTuring() {
     }
 
     if (transicion.escribir === 'σ') {
-      nuevaCinta[cabeza] = maquina.cintaAlmacenada;
+      nuevaCinta[cabeza] = maquina.cintaAlmacenada || maquina.blanco;
     } else {
       nuevaCinta[cabeza] = transicion.escribir;
     }
