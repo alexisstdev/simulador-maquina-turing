@@ -1,23 +1,23 @@
 import {
+  Box,
+  Button,
+  Divider,
+  Flex,
   FormLabel,
   Input,
-  Button,
-  Text,
   Select,
-  Flex,
-  Box,
-  Divider,
+  Text,
 } from '@chakra-ui/react';
-import Cinta from './Cinta';
-import useTuring from '../hooks/useTuring';
 import { FormEvent, useContext, useEffect } from 'react';
-import useMaquinas from '../hooks/useMachines';
-import { Context } from './MaquinaProvider';
-import { MaquinaTuring } from '../types/types';
-import Diagrama from './Diagrama';
 import { FiPlus } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
+import useMaquinas from '../hooks/useMachines';
+import useTuring from '../hooks/useTuring';
+import { MaquinaTuring } from '../types/types';
+import Cinta from './Cinta';
 import Detalles from './Detalles';
+import Diagrama from './Diagrama';
+import { Context } from './MaquinaProvider';
 
 export default function Home() {
   const {
@@ -43,7 +43,7 @@ export default function Home() {
 
   useEffect(() => {
     if (machines.length > 0) {
-      setMaquina(machines[0]);
+      setMaquina(machines[3]);
     }
   }, [machines, setMaquina]);
 
@@ -65,7 +65,13 @@ export default function Home() {
         <Box flex={0.5}>
           <Flex justifyContent={'space-between'} alignItems={'center'}>
             <Text fontSize={'2xl'}>Cargar máquina</Text>
-            <Button leftIcon={<FiPlus />} onClick={() => navigate('/crear')} ml={4}>
+            <Button
+              leftIcon={<FiPlus />}
+              onClick={() => {
+                navigate('/crear');
+              }}
+              ml={4}
+            >
               Crear máquina
             </Button>
           </Flex>

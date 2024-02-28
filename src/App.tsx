@@ -23,6 +23,7 @@ function App() {
           <Text>David Perez Compean - 21100266</Text>
           <Text>Esdras Daniel Amaya Vela - 21100155</Text>
           <Text>Alexis Sanmiguiel Torres - 21100288</Text>
+
           <Divider mt={4} mb={10} />
 
           <Routes>
