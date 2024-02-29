@@ -13,7 +13,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { useContext, useEffect, useState } from 'react';
-import { FiPlus, FiTrash } from 'react-icons/fi';
+import { FiDelete, FiPlus, FiTrash } from 'react-icons/fi';
 import useMaquinas from '../hooks/useMachines';
 import { Estado, Transicion } from '../types/types';
 import { Context } from './MaquinaProvider';
@@ -67,7 +67,39 @@ export default function Form() {
           alert('Máquina guardada correctamente');
         }}
       >
-        <Text fontSize={'3xl'}>Detalles de la máquina</Text>
+        <Flex justifyContent={'space-between'}>
+          <Text fontSize={'3xl'}>Detalles de la máquina</Text>
+          <Button
+            onClick={() => {
+              setMaquina({
+                descripcion: '',
+                estados: [] as Estado[],
+                alfabeto: [] as string[],
+                blanco: '',
+                estadoFinal: { nombre: '', id: 0 },
+                transiciones: [] as Transicion[],
+                estadoInicial: { nombre: '', id: 0 },
+                simbolos: [] as string[],
+                cintaAlmacenada: '',
+                simboloAlmacenamiento: 'σ',
+              });
+              setTransiciones([
+                {
+                  id: 0,
+                  desde: { nombre: '', id: 0 },
+                  hacia: { nombre: '', id: 0 },
+                  leer: '',
+                  escribir: '',
+                  direccion: '',
+                  almacenar: '',
+                },
+              ]);
+            }}
+            leftIcon={<FiDelete />}
+          >
+            Limpiar campos
+          </Button>
+        </Flex>
         <SimpleGrid
           columns={{ base: 1, md: 2 }}
           gap={4}
