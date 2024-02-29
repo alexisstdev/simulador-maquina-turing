@@ -8,6 +8,8 @@ interface Props {
 }
 
 export default function Cinta({ cinta, cabeza, setCabeza, isEjecutando }: Props) {
+  console.log(cinta);
+
   return (
     <Flex gap={3} overflowX={'auto'} mt={8} p={2}>
       {cinta.map((symbol, index) => (

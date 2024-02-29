@@ -45,7 +45,7 @@ export default function useTuring() {
   // Define un efecto que se ejecuta cuando cambian cinta o cabeza
   useEffect(() => {
     if (enEjecucion.current) {
-      const timer = setTimeout(ejecutarMaquina, 1000);
+      const timer = setTimeout(ejecutarMaquina, 300);
       return () => clearTimeout(timer);
     }
   }, [cinta, cabeza]);
@@ -54,7 +54,7 @@ export default function useTuring() {
     if (!enEjecucion.current) {
       // Si la máquina no está en ejecución, la inicia
       enEjecucion.current = true;
-      setCinta([...entrada].concat(maquina.blanco));
+      setCinta([...entrada].concat(Array(60).fill(maquina.blanco)));
       return;
     }
 

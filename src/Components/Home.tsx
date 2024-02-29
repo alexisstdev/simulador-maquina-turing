@@ -9,7 +9,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { FormEvent, useContext, useEffect } from 'react';
-import { FiPlus } from 'react-icons/fi';
+import { FiEdit3 } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
 import useMaquinas from '../hooks/useMachines';
 import useTuring from '../hooks/useTuring';
@@ -43,13 +43,13 @@ export default function Home() {
 
   useEffect(() => {
     if (machines.length > 0) {
-      setMaquina(machines[3]);
+      setMaquina(machines[4]);
     }
   }, [machines, setMaquina]);
 
   useEffect(() => {
     if (selectedMaquina) {
-      setCinta([selectedMaquina.blanco]);
+      setCinta([...entrada].concat(Array(60).fill(selectedMaquina.blanco)));
     }
   }, [selectedMaquina, setCinta]);
 
@@ -66,13 +66,13 @@ export default function Home() {
           <Flex justifyContent={'space-between'} alignItems={'center'}>
             <Text fontSize={'2xl'}>Cargar máquina</Text>
             <Button
-              leftIcon={<FiPlus />}
+              leftIcon={<FiEdit3 />}
               onClick={() => {
                 navigate('/crear');
               }}
               ml={4}
             >
-              Crear máquina
+              Editar máquina
             </Button>
           </Flex>
           <Select
@@ -95,6 +95,7 @@ export default function Home() {
               </option>
             ))}
           </Select>
+
           <form onSubmit={handleSubmit}>
             <FormLabel mt={4}>Entrada</FormLabel>
 
@@ -103,7 +104,9 @@ export default function Home() {
               onChange={(e) => {
                 setEntrada(e.target.value);
 
-                setCinta([...e.target.value].concat(selectedMaquina.blanco));
+                setCinta(
+                  [...e.target.value].concat(Array(60).fill(selectedMaquina.blanco))
+                );
               }}
             />
             <Button type='submit' mt={4} colorScheme='blue' size={'lg'} width={'100%'}>

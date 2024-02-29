@@ -41,6 +41,17 @@ export default function Form() {
 
   const { maquina, setMaquina } = useContext(Context);
 
+  /*   useEffect(() => {
+    if (defaultMaquina) {
+      setMaquina(defaultMaquina);
+      setTransiciones(defaultMaquina.transiciones);
+    }
+  }, []); */
+
+  useEffect(() => {
+    setTransiciones(maquina.transiciones);
+  }, []);
+
   useEffect(() => {
     setMaquina((maquina) => ({ ...maquina, transiciones }));
   }, [transiciones, setMaquina]);
@@ -68,6 +79,7 @@ export default function Form() {
             <Input
               placeholder='Descripción de lo que hace la máquina.'
               required
+              value={maquina.descripcion}
               onChange={(e) => {
                 setMaquina({ ...maquina, descripcion: e.target.value });
               }}
@@ -77,6 +89,7 @@ export default function Form() {
             <FormLabel>Alfabeto</FormLabel>
             <Input
               placeholder='Alfabeto separado por comas, ej: a,b,c'
+              value={maquina.alfabeto.join(',')}
               required
               onChange={(e) => {
                 const alfabeto = e.target.value.split(',');
@@ -89,6 +102,7 @@ export default function Form() {
             <FormLabel>Estados</FormLabel>
             <Input
               placeholder='Estados separados por comas, ej: q0,q1,q2,q3'
+              value={maquina.estados.map((estado) => estado.nombre).join(',')}
               required
               onChange={(e) => {
                 /* regex for validate the format  */
@@ -106,6 +120,7 @@ export default function Form() {
             <Input
               placeholder='Blanco de la cinta, (solo un símbolo) ej: △'
               required
+              value={maquina.blanco}
               onChange={(e) => {
                 if (maquina.alfabeto.includes(e.target.value)) {
                   alert('El blanco no puede ser un símbolo del alfabeto');
@@ -121,6 +136,7 @@ export default function Form() {
             <FormLabel>Simbolos extras como marcas (opcional)</FormLabel>
             <Input
               placeholder='Simbolos extras separados por comas, ej: #,&,!'
+              value={maquina.simbolos && maquina.simbolos.join(',')}
               onChange={(e) => {
                 const extras = e.target.value.split(',');
 
@@ -133,6 +149,7 @@ export default function Form() {
             <Select
               placeholder='Selecciona el estado inicial'
               required
+              value={maquina.estadoInicial.nombre}
               onChange={(e) => {
                 setMaquina({
                   ...maquina,
@@ -154,6 +171,7 @@ export default function Form() {
             <Select
               placeholder='Selecciona el estado final'
               required
+              value={maquina.estadoFinal.nombre}
               onChange={(e) => {
                 setMaquina({
                   ...maquina,
@@ -203,6 +221,7 @@ export default function Form() {
                   <Select
                     placeholder='Estado inicial'
                     required
+                    value={transiciones[index].desde.nombre}
                     onChange={(e) => {
                       const nuevoEstado = maquina.estados.find(
                         (estado) => estado.nombre === e.target.value
@@ -226,6 +245,7 @@ export default function Form() {
                   <Select
                     placeholder='Estado final'
                     required
+                    value={transiciones[index].hacia.nombre}
                     onChange={(e) => {
                       const nuevoEstado = maquina.estados.find(
                         (estado) => estado.nombre === e.target.value
@@ -326,16 +346,17 @@ export default function Form() {
                   <Select
                     placeholder='Movimiento'
                     required
+                    value={transiciones[index].direccion}
                     onChange={(e) => {
                       const nuevasTransiciones = [...transiciones];
                       nuevasTransiciones[index].direccion = e.target.value;
                       setTransiciones(nuevasTransiciones);
                     }}
                   >
-                    <option value='I' style={{ color: 'black' }}>
+                    <option value='L' style={{ color: 'black' }}>
                       Izquierda
                     </option>
-                    <option value='D' style={{ color: 'black' }}>
+                    <option value='R' style={{ color: 'black' }}>
                       Derecha
                     </option>
                     <option value='N' style={{ color: 'black' }}>
