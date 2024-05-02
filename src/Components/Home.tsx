@@ -13,6 +13,7 @@ const exampleTokens = `[
   (';', 'SEMICOLON'),
   (' ', 'WHITESPACE'),
   ('switch', 'SWITCH'),
+  
   (' ', 'WHITESPACE'),
   ('x', 'IDENTIFIER'),
   (' ', 'WHITESPACE'),
